@@ -1,24 +1,98 @@
 ﻿<!DOCTYPE html>
 <html>
-    <head>
+<head>
     <!--
         Customize the content security policy in the meta tag below as needed. Add 'unsafe-inline' to default-src to enable inline JavaScript.
         For details, see http://go.microsoft.com/fwlink/?LinkID=617521
     -->
-        <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
-        
-        <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
-        <meta name="format-detection" content="telephone=no">
-        <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
-        <link rel="stylesheet" type="text/css" href="css/index.css">
-        <title>Dices</title>
-    </head>
-    <body>
-        <script type="text/javascript" src="cordova.js"></script>
-        <script type="text/javascript" src="scripts/platformOverrides.js"></script>
-        <script type="text/javascript" src="scripts/index.js"></script>
-        <h1>Dices</h1>
-        <p class="main-buttons" id="new-game">Get Started</p>
-    </body>
+    <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *">
+
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+    <link rel="stylesheet" type="text/css" href="css/index.css">
+    <title>Dices</title>
+</head>
+<body>
+    <script type="text/javascript" src="cordova.js"></script>
+    <script type="text/javascript" src="scripts/platformOverrides.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+    <h1>Dices</h1>
+    <div class="dices" id="dice-roll">
+        <div class="dice-1">
+            <a id="dice1value">0</a>
+        </div>
+        <div class="dice-2">
+            <a id="dice2value">0</a>
+        </div>
+    </div>
+    <p id="dice-total">Tap to Roll</p>
+    <div class="results">
+        <a>Results:</a>
+        <table class="stats-table">
+            <tr>
+                <th>Roll Value</th>
+                <th>Occurences</th>
+                <th>Percentage</th>
+            </tr>
+            <tr>
+                <td>2</td>
+                <td id="score2">0</td>
+                <td id="percent2">0</td>
+            </tr>
+            <tr>
+                <td>3</td>
+                <td id="score3">0</td>
+                <td id="percent3">0</td>
+            </tr>
+            <tr>
+                <td>4</td>
+                <td id="score4">0</td>
+                <td id="percent4">0</td>
+            </tr>
+            <tr>
+                <td>5</td>
+                <td id="score5">0</td>
+                <td id="percent5">0</td>
+            </tr>
+            <tr>
+                <td>6</td>
+                <td id="score6">0</td>
+                <td id="percent6">0</td>
+            </tr>
+            <tr>
+                <td>7</td>
+                <td id="score7">0</td>
+                <td id="percent7">0</td>
+            </tr>
+            <tr>
+                <td>8</td>
+                <td id="score8">0</td>
+                <td id="percent8">0</td>
+            </tr>
+            <tr>
+                <td>9</td>
+                <td id="score9">0</td>
+                <td id="percent9">0</td>
+            </tr>
+            <tr>
+                <td>10</td>
+                <td id="score10">0</td>
+                <td id="percent10">0</td>
+            </tr>
+            <tr>
+                <td>11</td>
+                <td id="score11">0</td>
+                <td id="percent11">0</td>
+            </tr>
+            <tr>
+                <td>12</td>
+                <td id="score12">0</td>
+                <td id="percent12">0</td>
+            </tr>
+        </table>
+    </div><br>
+    <p class="main-buttons">Clear</p>
+</body>
 </html>
