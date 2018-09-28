@@ -42,8 +42,18 @@
     };
 
     function onBackKeyDown() {
-        history.go(-1);
-        navigator.app.backHistory();
+        navigator.notification.confirm(
+            'Exit the app?',
+            quitApp,
+            'Exit',
+            ['Yes', 'No']
+        );
+    }
+
+    function quitApp(buttonIndex) {
+        if (buttonIndex != 2) {
+            navigator.app.exitApp();
+        }
     }
 
     function rollDice() {
