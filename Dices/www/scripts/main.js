@@ -6,8 +6,8 @@
     "use strict";
 
     document.addEventListener('deviceready', onDeviceReady.bind(this), false);
-    var dice1 = 0;
-    var dice2 = 0;
+    var die1 = 0;
+    var die2 = 0;
     var diceTotal = 0;
     var totalRolls = 0;
     var rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
@@ -20,7 +20,7 @@
 
         document.getElementById("clear-button").addEventListener("click", onClear);
         document.getElementById("dice-roll").addEventListener("click", rollDice);
-
+        updateDiceImage();
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         var parentElement = document.getElementById('deviceready');
         var listeningElement = parentElement.querySelector('.listening');
@@ -47,54 +47,66 @@
     }
 
     function rollDice() {
-        dice1 = Math.floor((Math.random() * 6) + 1);
-        dice2 = Math.floor((Math.random() * 6) + 1);
-        diceTotal = dice1 + dice2;
+        animateDiceRoll();
+        diceTotal = die1 + die2;
+        document.getElementById("roll-result").innerHTML = "You rolled " + diceTotal;
         rolls[diceTotal]++;
         totalRolls++
-        updateDiceImage();
         updateTable();
     }
 
+    function animateDiceRoll() {
+        die1 = Math.floor((Math.random() * 6) + 1);
+        die2 = Math.floor((Math.random() * 6) + 1);
+        updateDiceImage();
+    }
+
     function updateDiceImage() {
-        document.getElementById("dice1value").innerHTML = dice1;
-        document.getElementById("dice2value").innerHTML = dice2;
-        if (diceTotal == 0) {
-            document.getElementById("dice-total").innerHTML = "Tap to Roll";
-        } else {
-            document.getElementById("dice-total").innerHTML = "Total Value is " + diceTotal;
-        }
+        var urlDie1 = "<img src='images/Face_" + JSON.stringify(die1) + ".png'>";
+        var urlDie2 = "<img src='images/Face_" + JSON.stringify(die2) + ".png'>";
+        document.getElementById("die1value").innerHTML = urlDie1;
+        document.getElementById("die2value").innerHTML = urlDie2;
     }
 
     function updateTable() {
         for (var i = 2; i <= 12; i++) {
             document.getElementById("score" + JSON.stringify(i)).innerHTML = JSON.stringify(rolls[i]);
-            document.getElementById("percent" + JSON.stringify(i)).innerHTML = JSON.stringify(Math.round((rolls[i] / totalRolls) * 100)) + "%";
+            if (totalRolls != 0) {
+                document.getElementById("percent" + JSON.stringify(i)).innerHTML = JSON.stringify(Math.round((rolls[i] / totalRolls) * 100)) + "%";
+            } else {
+                document.getElementById("percent" + JSON.stringify(i)).innerHTML = "0";
+            }
         }
     }
 
     function reset(buttonIndex) {
-        console.log(buttonIndex);
         if (buttonIndex != 2) {
-            for (var i = 2; i <= 12; i++) {
-                document.getElementById("score" + JSON.stringify(i)).innerHTML = "0";
-                document.getElementById("percent" + JSON.stringify(i)).innerHTML = "0";
-            }
-            dice1 = 0;
-            dice2 = 0;
+            die1 = 0;
+            die2 = 0;
             diceTotal = 0;
             totalRolls = 0;
             rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
             updateDiceImage();
+            document.getElementById("roll-result").innerHTML = "Tap to Roll";
+            updateTable()
         }
     }
 
     function onClear() {
         navigator.notification.confirm(
-            'Are you sure you want to reset everything',
+            'Reset everything?',
             reset,
             'Reset',
             ['Yes', 'No']
         );
+    }
+
+    function sleep(milliseconds) {
+        var start = new Date().getTime();
+        for (var i = 0; i < 1e7; i++) {
+            if ((new Date().getTime() - start) > milliseconds) {
+                break;
+            }
+        }
     }
 })();

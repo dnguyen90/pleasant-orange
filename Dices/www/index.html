@@ -12,24 +12,20 @@
     <meta name="msapplication-tap-highlight" content="no">
     <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
     <link rel="stylesheet" type="text/css" href="css/index.css">
-    <title>Dices</title>
+    <title>Dice App</title>
 </head>
 <body>
     <script type="text/javascript" src="cordova.js"></script>
     <script type="text/javascript" src="scripts/platformOverrides.js"></script>
     <script type="text/javascript" src="scripts/main.js"></script>
-    <h1>Dices</h1>
-    <div class="dices" id="dice-roll">
-        <div class="dice-1">
-            <a id="dice1value">0</a>
-        </div>
-        <div class="dice-2">
-            <a id="dice2value">0</a>
-        </div>
+    <h1>My Sh*tty Dice App</h1>
+    <div class="dice" id="dice-roll">
+        <div id="die1value" class="die"></div>
+        <div id="die2value" class="die"></div>
     </div>
-    <p id="dice-total">Tap to Roll</p>
+    <a id="roll-result">Tap to Roll</a>
     <div class="results">
-        <a>Results:</a>
+        <h3>Results:</h3>
         <table class="stats-table">
             <tr>
                 <th>Roll Value</th>
