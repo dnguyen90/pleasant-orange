@@ -17,10 +17,9 @@
         document.addEventListener('pause', onPause.bind(this), false);
         document.addEventListener('resume', onResume.bind(this), false);
         document.addEventListener("backbutton", onBackKeyDown, false);
-
+        updateDiceImage();
         document.getElementById("clear-button").addEventListener("click", onClear);
         document.getElementById("dice-roll").addEventListener("click", rollDice);
-        updateDiceImage();
         // TODO: Cordova has been loaded. Perform any initialization that requires Cordova here.
         var parentElement = document.getElementById('deviceready');
         var listeningElement = parentElement.querySelector('.listening');
@@ -57,12 +56,17 @@
     }
 
     function rollDice() {
-        animateDiceRoll();
-        diceTotal = die1 + die2;
-        document.getElementById("roll-result").innerHTML = "You rolled " + diceTotal;
-        rolls[diceTotal]++;
-        totalRolls++
-        updateTable();
+        var interval = setInterval(animateDiceRoll, 100);
+        document.getElementById("roll-result").innerHTML = "Rolling...";
+        setTimeout(
+            function () {
+                clearInterval(interval);
+                diceTotal = die1 + die2;
+                document.getElementById("roll-result").innerHTML = "You rolled " + diceTotal;
+                rolls[diceTotal]++;
+                totalRolls++
+                updateTable();
+            }, 2000);
     }
 
     function animateDiceRoll() {
@@ -109,14 +113,5 @@
             'Reset',
             ['Yes', 'No']
         );
-    }
-
-    function sleep(milliseconds) {
-        var start = new Date().getTime();
-        for (var i = 0; i < 1e7; i++) {
-            if ((new Date().getTime() - start) > milliseconds) {
-                break;
-            }
-        }
     }
 })();
