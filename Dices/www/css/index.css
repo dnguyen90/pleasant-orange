@@ -74,6 +74,7 @@ h1 {
     overflow: visible;
     padding: 0px;
     text-align: center;
+    color: white;
 }
 
 
@@ -85,13 +86,9 @@ h1 {
     border-width: 2px;
     font-size: 18pt;
     width: 50%;
+    color: white;
+    background-color: darkgreen;
 }
-
-    .main-buttons:hover {
-        color: white;
-        background-color: darkgreen;
-        transition: 0.7s;
-    }
 
 .dice {
     display: grid;
@@ -129,7 +126,7 @@ h1 {
 }
 
 .recent-rolls-list {
-
+    color: white;
 }
 
 .stats-table {

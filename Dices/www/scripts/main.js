@@ -120,6 +120,8 @@
             diceTotal = 0;
             totalRolls = 0;
             rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+            recentRolls = new Array();
+            updateRecentList();
             updateDiceImage();
             document.getElementById("roll-result").innerHTML = "Tap to Roll";
             updateTable()
