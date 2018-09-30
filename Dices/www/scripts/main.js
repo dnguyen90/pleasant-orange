@@ -11,6 +11,7 @@
     var diceTotal = 0;
     var totalRolls = 0;
     var rolls = [0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0];
+    var recentRolls = new Array();
 
     function onDeviceReady() {
         // Handle the Cordova pause and resume events
@@ -50,7 +51,7 @@
     }
 
     function quitApp(buttonIndex) {
-        if (buttonIndex != 2) {
+        if (buttonIndex === 1) {
             navigator.app.exitApp();
         }
     }
@@ -66,6 +67,16 @@
                 rolls[diceTotal]++;
                 totalRolls++
                 updateTable();
+                console.log(recentRolls);
+                if (recentRolls.length >= 10) {
+                    recentRolls.unshift(diceTotal);
+                    recentRolls.pop();
+                    
+                } else {
+                    recentRolls.unshift(diceTotal);
+                }
+                console.log(recentRolls);
+                updateRecentList();
             }, 2000);
     }
 
@@ -93,8 +104,17 @@
         }
     }
 
+    function updateRecentList() {
+        var html = '';
+        for (var i = 0; i < recentRolls.length; i++) {
+            html += recentRolls[i];
+            html += "<br>";
+        }
+        document.getElementById("recent-rolls").innerHTML = html;
+    }
+
     function reset(buttonIndex) {
-        if (buttonIndex != 2) {
+        if (buttonIndex === 1) {
             die1 = 0;
             die2 = 0;
             diceTotal = 0;

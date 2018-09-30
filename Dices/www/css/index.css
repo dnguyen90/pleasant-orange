@@ -105,12 +105,22 @@ h1 {
 }
 
 .results {
+    display: grid;
+    grid-column: auto auto;
     margin: 0 auto;
     width: 90%;
 }
 
-#result-label {
+.grid1 {
+    display: grid;
+    grid-column-start: 1;
+    grid-column-end: 1;
+}
 
+.grid2 {
+    display: grid;
+    grid-column-start: 2;
+    grid-column-end: 2;
 }
 
 #roll-result {
@@ -118,18 +128,24 @@ h1 {
     color: green;
 }
 
+.recent-rolls-list {
+
+}
+
 .stats-table {
     border-collapse: collapse;
     background-color: white;
     font-size: 8pt;
-    width: 90%;
+    width: 100%;
     border: 1px solid rgba(0, 0, 0, 0.8);
     margin: 0 auto;
 }
 
     .stats-table td, .stats-table th {
         border: 1px solid #ddd;
-        padding: 5px;
+        padding-top: 5px;
+        padding-bottom: 5px;
+        
     }
 
     .stats-table tr:nth-child(even) {
@@ -137,13 +153,13 @@ h1 {
     }
 
     .stats-table tr:hover {
-        background-color: #ddd;
+        background-color: white;
     }
 
     .stats-table th {
         font-size: 12pt;
         padding-top: 10px;
         padding-bottom: 10px;
-        background-color: #4CAF50;
+        background-color: green;
         color: white;
     }
